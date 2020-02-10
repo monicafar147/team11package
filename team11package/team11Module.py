@@ -16,6 +16,16 @@ def dictionary_of_metrics(items):
                                    'min': 8842.00,
                                    'max': 39660.00}
     """
+    # Use numpy to find the metrics: Courtney
+    mean = 
+    median = 
+    variance = 
+    standard_dev = 
+    min =
+    max =
+
+    # Create and return dictionary: Mikael
+    dict = {} 
     pass
 
 def five_num_summary(items):
@@ -37,6 +47,15 @@ def five_num_summary(items):
     'q3': 36720.00}
 
     """
+    # Calculate five number summary: Courtney
+    max = 
+    median = 
+    min = 
+    q1 =
+    q3 = 
+
+    # Create and return dictionary: Mikael
+    dict = {}
     pass
 
 def date_parser(dates):
@@ -53,6 +72,7 @@ def date_parser(dates):
     date_parser(list) == ['2019-11-29', '2019-11-29', '2019-11-29']
 
     """
+    # 
     pass
 
 def extract_municipality_hashtags(df):
