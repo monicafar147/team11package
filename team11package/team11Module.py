@@ -72,7 +72,7 @@ def date_parser(dates):
     date_parser(list) == ['2019-11-29', '2019-11-29', '2019-11-29']
 
     """
-    # 
+    # extract the date only from dates: Olwethu
     pass
 
 def extract_municipality_hashtags(df):
