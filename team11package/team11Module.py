@@ -17,12 +17,12 @@ def dictionary_of_metrics(items):
                                    'max': 39660.00}
     """
     # Use numpy to find the metrics: Courtney
-    mean = 
-    median = 
-    variance = 
-    standard_dev = 
-    min =
-    max =
+    mean = 0
+    median = 0 
+    variance = 0 
+    standard_dev = 0 
+    minimum = 0
+    maximum = 0
 
     # Create and return dictionary: Mikael
     dict = {} 
@@ -48,11 +48,11 @@ def five_num_summary(items):
 
     """
     # Calculate five number summary: Courtney
-    max = 
-    median = 
-    min = 
-    q1 =
-    q3 = 
+    maximum = 0 
+    median = 0
+    minimum = 0
+    q1 = 0
+    q3 = 0
 
     # Create and return dictionary: Mikael
     dict = {}
