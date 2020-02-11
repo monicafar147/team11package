@@ -25,8 +25,16 @@ def dictionary_of_metrics(items):
     maximum = 0
 
     # Create and return dictionary: Mikael
-    dict = {} 
-    pass
+    dict = {}
+
+    dict['mean'] = mean
+    dict['median'] = median
+    dict['variance'] = variance
+    dict['standard variance'] = standard_dev
+    dict['min'] = minimum
+    dict['max'] = maximum
+
+    return dict
 
 def five_num_summary(items):
     """Return a dictionary of the five number summary: maximum, median, minimum, first quartile and third quartile.
@@ -56,7 +64,14 @@ def five_num_summary(items):
 
     # Create and return dictionary: Mikael
     dict = {}
-    pass
+
+    dict['max'] = maximum
+    dict['median'] = median
+    dict['min'] = minimum
+    dict['q1'] = q1
+    dict['q2'] = q2
+
+    return dict
 
 def date_parser(dates):
     """Takes as input a list of datetime strings and returns only the date in 'yyyy-mm-dd' format.
@@ -105,6 +120,14 @@ def extract_municipality_hashtags(df):
     # Create 'municipality' column: Monica
     df['municipality'] = df['Tweets']
     # Extract municipality from Tweets: Mikael
+    l = 0
+    
+    for tweet in df['Tweets']:
+        tweet = tweet.split(' ')
+        for key in mun_dict.keys():
+            if key in tweet:
+               df.loc[l, 'municipality'] = mun_dict[key]
+        l += 1
     # Fill empty values in 'hashtags' and 'municipality' columns with np.nan: Courtney
 
     return df
@@ -138,7 +161,7 @@ def word_splitter(df):
 
     Expected output should be same dataframe but with new column headings Date and Split Tweets
     """
-    # Create 'Split Tweets' column with each tweet split into a list: Olwethu 
+    # Create 'Split Tweets' column, with each tweet split into a list: Olwethu 
          
     pass
 
