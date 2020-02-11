@@ -1,0 +1,20 @@
+Metadata-Version: 1.0
+Name: team11package
+Version: 0.1
+Summary: EDSA2020 team 11 predict
+Home-page: https://github.com/<username>/<package-name>
+Author: Monica Farrell
+Author-email: monicafar147@gmail.com
+License: MIT
+Description: # team11package
+        This package is for use of team 11 and team 11 only.
+        
+        ## building this package locally
+        'python setup.py sdist'
+        
+        ## installing this package from GITHUB
+        'pip install git+<'url from git'>
+        
+        ## updatig this package from GITHUB
+        'pip install --upgrade git+<'url from git'>
+Platform: UNKNOWN
