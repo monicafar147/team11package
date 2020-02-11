@@ -72,7 +72,9 @@ def date_parser(dates):
     date_parser(list) == ['2019-11-29', '2019-11-29', '2019-11-29']
 
     """
-    # 
+    # extract the date only from dates: Olwethu
+    # append each date to a new list: Olwethu
+    # return new list with dates only: Mikael
     pass
 
 def extract_municipality_hashtags(df):
@@ -86,6 +88,12 @@ def extract_municipality_hashtags(df):
 
     Expected output should be same dataframe but with new column headings municipality and hashtags
     """
+    # Create 'hashtags' column: Mikael
+    # Extract hashtags from Tweets: Monica
+    # Create 'municipality' column: Monica
+    # Extract municipality from Tweets: Mikael
+    # Fill empty values in 'hashtags' and 'municipality' columns with np.nan: Courtney
+
     pass
 
 def number_of_tweets_per_day(df):
@@ -116,7 +124,9 @@ def word_splitter(df):
         The resulting words are all be lowercase.
 
     Expected output should be same dataframe but with new column headings Date and Split Tweets
-    """    
+    """
+    # Create 'Split Tweets' column with each tweet split into a list: Olwethu 
+         
     pass
 
 def stop_words_remover(df):
