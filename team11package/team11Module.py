@@ -93,18 +93,21 @@ def extract_municipality_hashtags(df):
     df['hashtags'] = df['Tweets'].str.lower().str.split()
     # Extract hashtags from Tweets: Monica
     i = 0
+
     for tweet in df['hashtags']:
       hashtags = []
       for word in tweet:
-         if word.startswith('#'):
-           hashtags.append(word)
+        if word.startswith('#'):
+          hashtags.append(word)
       df.loc[i, 'hashtags'] = hashtags
       i += 1
+
     # Create 'municipality' column: Monica
+    df['municipality'] = df['Tweets']
     # Extract municipality from Tweets: Mikael
     # Fill empty values in 'hashtags' and 'municipality' columns with np.nan: Courtney
 
-    pass
+    return df
 
 def number_of_tweets_per_day(df):
     """Takes in a pandas dataframe and returns the number of tweets that were posted per day.
