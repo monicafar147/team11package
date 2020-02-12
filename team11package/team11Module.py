@@ -106,6 +106,18 @@ def extract_municipality_hashtags(df):
 
     Expected output should be same dataframe but with new column headings municipality and hashtags
     """
+    # Create 'municipality' column: Monica
+    df['municipality'] = df['Tweets']
+
+    # Extract municipality from Tweets: Mikael
+    l = 0
+    
+    for tweet in df['Tweets']:
+        tweet = tweet.split(' ')
+        for key in mun_dict.keys():
+            if key in tweet:
+               df.loc[l, 'municipality'] = mun_dict[key]
+        l += 1
     
     # Create 'hashtags' column: Mikael
     df['hashtags'] = df['Tweets'].str.lower().str.split()
@@ -120,19 +132,7 @@ def extract_municipality_hashtags(df):
           hashtags.append(word)
       df.loc[i, 'hashtags'] = hashtags
       i += 1
-
-    # Create 'municipality' column: Monica
-    df['municipality'] = df['Tweets']
-
-    # Extract municipality from Tweets: Mikael
-    l = 0
-    
-    for tweet in df['Tweets']:
-        tweet = tweet.split(' ')
-        for key in mun_dict.keys():
-            if key in tweet:
-               df.loc[l, 'municipality'] = mun_dict[key]
-        l += 1
+      
         
     # Fill empty values in 'hashtags' and 'municipality' columns with np.nan: Courtney
 
