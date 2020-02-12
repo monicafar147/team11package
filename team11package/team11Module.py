@@ -69,7 +69,7 @@ def five_num_summary(items):
     dict['median'] = median
     dict['min'] = minimum
     dict['q1'] = q1
-    dict['q2'] = q2
+    dict['q3'] = q3
 
     return dict
 
@@ -145,7 +145,18 @@ def number_of_tweets_per_day(df):
 
     Expected output should be same dataframe but with new column headings Date and Tweets
     """
-
+    # Create new dataframe: Monica
+    # Create and complete 'Date' and 'Tweets' column in new dataframe: Mikael
+    df['Date'] = df['Date'].str.split(' ') 
+ 
+    dates = []
+    index = 0
+    for date in df['Date']:
+        if date[0] not in dates:
+            dates.append(date[0])
+        df.loc[index, 'Date'] = date[0]
+        index += 1
+    
     pass
 
 def word_splitter(df):
@@ -209,5 +220,9 @@ def stop_words_remover(df):
         returns: pandas dataframe with a column named "Without Stop Words".
 
     Expected output should be same dataframe but with new column heading Without Stop Words
-    """    
+    """
+    # Create 'Without Stop Words' column: Mikael
+    df['Without Stop Words'] = df['Tweets'].str.lower().str.split()
+    
+    # Extract stop words from 'Without Stop Words' column: Monica    
     pass
