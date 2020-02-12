@@ -88,8 +88,11 @@ def date_parser(dates):
 
     """
     # extract the date only from dates: Olwethu
+
     # append each date to a new list: Olwethu
+
     # return new list with dates only: Mikael
+
     pass
 
 def extract_municipality_hashtags(df):
@@ -106,6 +109,7 @@ def extract_municipality_hashtags(df):
     
     # Create 'hashtags' column: Mikael
     df['hashtags'] = df['Tweets'].str.lower().str.split()
+
     # Extract hashtags from Tweets: Monica
     i = 0
 
@@ -119,6 +123,7 @@ def extract_municipality_hashtags(df):
 
     # Create 'municipality' column: Monica
     df['municipality'] = df['Tweets']
+
     # Extract municipality from Tweets: Mikael
     l = 0
     
@@ -128,6 +133,7 @@ def extract_municipality_hashtags(df):
             if key in tweet:
                df.loc[l, 'municipality'] = mun_dict[key]
         l += 1
+        
     # Fill empty values in 'hashtags' and 'municipality' columns with np.nan: Courtney
 
     return df
@@ -146,6 +152,7 @@ def number_of_tweets_per_day(df):
     Expected output should be same dataframe but with new column headings Date and Tweets
     """
     # Create new dataframe: Monica
+
     # Create and complete 'Date' and 'Tweets' column in new dataframe: Mikael
     df['Date'] = df['Date'].str.split(' ') 
  
