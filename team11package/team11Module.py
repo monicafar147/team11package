@@ -106,6 +106,19 @@ def extract_municipality_hashtags(df):
 
     Expected output should be same dataframe but with new column headings municipality and hashtags
     """
+    
+    # dictionary mapping official municipality twitter handles to the municipality name
+    mun_dict = {
+    '@CityofCTAlerts' : 'Cape Town',
+    '@CityPowerJhb' : 'Johannesburg',
+    '@eThekwiniM' : 'eThekwini' ,
+    '@EMMInfo' : 'Ekurhuleni',
+    '@centlecutility' : 'Mangaung',
+    '@NMBmunicipality' : 'Nelson Mandela Bay',
+    '@CityTshwane' : 'Tshwane'
+    }
+
+
     # Create 'municipality' column: Monica
     df['municipality'] = df['Tweets']
 
@@ -116,7 +129,9 @@ def extract_municipality_hashtags(df):
         tweet = tweet.split(' ')
         for key in mun_dict.keys():
             if key in tweet:
-               df.loc[l, 'municipality'] = mun_dict[key]
+                df.loc[l, 'municipality'] = mun_dict[key]
+            #else: Fill empty values in 'hashtags' and 'municipality' columns with np.nan: Courtney
+                
         l += 1
     
     # Create 'hashtags' column: Mikael
@@ -131,11 +146,9 @@ def extract_municipality_hashtags(df):
         if word.startswith('#'):
           hashtags.append(word)
       df.loc[i, 'hashtags'] = hashtags
+      # Fill empty values in 'hashtags' and 'municipality' columns with np.nan: Courtney
       i += 1
       
-        
-    # Fill empty values in 'hashtags' and 'municipality' columns with np.nan: Courtney
-
     return df
 
 def number_of_tweets_per_day(df):
