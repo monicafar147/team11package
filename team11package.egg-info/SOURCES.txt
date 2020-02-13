@@ -1,0 +1,9 @@
+README.md
+setup.py
+team11package/__init__.py
+team11package/team11Module.py
+team11package.egg-info/PKG-INFO
+team11package.egg-info/SOURCES.txt
+team11package.egg-info/dependency_links.txt
+team11package.egg-info/requires.txt
+team11package.egg-info/top_level.txt
