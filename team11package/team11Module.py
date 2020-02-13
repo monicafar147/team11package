@@ -175,7 +175,7 @@ def number_of_tweets_per_day(df):
         if date[0] not in dates:
             dates.append(date[0])
         df.loc[index, 'Date'] = date[0]
-        index -= 1
+        index += 1
     
     pass
 
