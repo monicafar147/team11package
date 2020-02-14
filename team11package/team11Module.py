@@ -17,6 +17,14 @@ def dictionary_of_metrics(items):
                                    'max': 39660.00}
     """
     # Use numpy to find the metrics: Courtney
+        mean = round(np.mean(listofints), 2)
+        median = round(np.median(listofints),2)
+        var = round(np.var(listofints), 2)
+        std = round(np.std(listofints),2)
+        min = round(np.min(listofints),2)
+        max = round(np.max(listofints),2)
+
+
     mean = 0
     median = 0
     variance = 0
