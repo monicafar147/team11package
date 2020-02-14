@@ -86,13 +86,14 @@ def date_parser(dates):
     """
     # extract the date only from dates: Olwethu
     # append each date to a new list: Olwethu
-    # return new list with dates only: Mikael
+    
 
     date_list = []
     for i in dates:
         i = i.split(' ')
         date_list.append(i[0])
         
+    # return new list with dates only: Mikael    
     return date_list
 
 def extract_municipality_hashtags(df):
