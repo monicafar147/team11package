@@ -1,3 +1,7 @@
+#import relevant modules
+import numpy as np
+import pandas as pd
+
 def dictionary_of_metrics(items):
     """Return a dictionary of statistical measures: mean, median, variance, standard deviation, minimum and maximum of a list of items.
     All values in the returned dict will be rounded to 2 decimal places.
@@ -16,17 +20,18 @@ def dictionary_of_metrics(items):
                                    'min': 8842.00,
                                    'max': 39660.00}
     """
-    # Use numpy to find the metrics: Courtney
-    mean = 0
-    median = 0 
-    variance = 0 
-    standard_dev = 0 
-    minimum = 0
-    maximum = 0
-
     # Create and return dictionary: Mikael
-    dict = {} 
-    pass
+    dict = {}
+
+    # Use numpy to find the metrics: Courtney
+    dict['mean'] = round(np.mean(items), 2)
+    dict['median'] = round(np.median(items),2)
+    dict['variance'] = round(np.var(items), 2)
+    dict['standard variance'] = round(np.std(items),2)
+    dict['min'] = round(np.min(items),2)
+    dict['max'] = round(np.max(items),2)
+
+    return dict
 
 def five_num_summary(items):
     """Return a dictionary of the five number summary: maximum, median, minimum, first quartile and third quartile.
@@ -48,19 +53,26 @@ def five_num_summary(items):
 
     """
     # Calculate five number summary: Courtney
-    maximum = 0 
-    median = 0
-    minimum = 0
-    q1 = 0
-    q3 = 0
+    maximum = np.max(items)
+    median = np.median(items)
+    minimum = np.min(items)
+    q1 = np.percentile(items, 25)
+    q3 = np.percentile(items, 75)
 
     # Create and return dictionary: Mikael
     dict = {}
-    pass
+
+    dict['max'] = maximum
+    dict['median'] = median
+    dict['min'] = minimum
+    dict['q1'] = q1
+    dict['q3'] = q3
+
+    return dict
 
 def date_parser(dates):
     """Takes as input a list of datetime strings and returns only the date in 'yyyy-mm-dd' format.
-    
+
 
     Args:
         items (array): list containing dates represented as strings. Each string in the input list is formatted as 'yyyy-mm-dd hh:mm:ss'
@@ -73,13 +85,16 @@ def date_parser(dates):
 
     """
     # extract the date only from dates: Olwethu
+
     # append each date to a new list: Olwethu
+
     # return new list with dates only: Mikael
+
     pass
 
 def extract_municipality_hashtags(df):
     """Takes in a pandas dataframe and returns a modified dataframe that includes two new columns that contain information about the municipality and hashtag of the tweet.
-    
+
     Args:
         df (pandas dataframe)
 
@@ -88,19 +103,56 @@ def extract_municipality_hashtags(df):
 
     Expected output should be same dataframe but with new column headings municipality and hashtags
     """
-    # Create 'hashtags' column: Mikael
-    # Extract hashtags from Tweets: Monica
-    # Create 'municipality' column: Monica
-    # Extract municipality from Tweets: Mikael
-    # Fill empty values in 'hashtags' and 'municipality' columns with np.nan: Courtney
 
-    pass
+    # dictionary mapping official municipality twitter handles to the municipality name
+    mun_dict = {
+    '@CityofCTAlerts' : 'Cape Town',
+    '@CityPowerJhb' : 'Johannesburg',
+    '@eThekwiniM' : 'eThekwini' ,
+    '@EMMInfo' : 'Ekurhuleni',
+    '@centlecutility' : 'Mangaung',
+    '@NMBmunicipality' : 'Nelson Mandela Bay',
+    '@CityTshwane' : 'Tshwane'
+    }
+
+
+    # Create 'municipality' column: Monica
+    df['municipality'] = df['Tweets']
+
+    # Extract municipality from Tweets: Mikael
+    l = 0
+
+    for tweet in df['Tweets']:
+        tweet = tweet.split(' ')
+        for key in mun_dict.keys():
+            if key in tweet:
+                df.loc[l, 'municipality'] = mun_dict[key]
+            #else: Fill empty values in 'hashtags' and 'municipality' columns with np.nan: Courtney
+
+        l += 1
+
+    # Create 'hashtags' column: Mikael
+    df['hashtags'] = df['Tweets'].str.lower().str.split()
+
+    # Extract hashtags from Tweets: Monica
+    i = 0
+
+    for tweet in df['hashtags']:
+      hashtags = []
+      for word in tweet:
+        if word.startswith('#'):
+          hashtags.append(word)
+      df.loc[i, 'hashtags'] = hashtags
+      # Fill empty values in 'hashtags' and 'municipality' columns with np.nan: Courtney
+      i += 1
+
+    return df
 
 def number_of_tweets_per_day(df):
     """Takes in a pandas dataframe and returns the number of tweets that were posted per day.
     The index of the new dataframe will be named Date, and the column of the new dataframe will be 'Tweets', corresponding to the date and number of tweets, respectively.
     The date should be formated as yyyy-mm-dd, and will be a datetime object
-    
+
     Args:
         df (pandas dataframe)
 
@@ -109,56 +161,60 @@ def number_of_tweets_per_day(df):
 
     Expected output should be same dataframe but with new column headings Date and Tweets
     """
-<<<<<<< HEAD
-=======
     # Create new dataframe: Monica
+    new_df = pd.DataFrame() 
 
     # Create and complete 'Date' and 'Tweets' column in new dataframe: Mikael
-    new_df['Date'] = df['Date'].str.split(' ')
+    df['Date'] = df['Date'].str.split(' ')
 
     dates = []
     index = 0
-    for date in new_df['Date']:
+    for date in df['Date']:
         if date[0] not in dates:
             dates.append(date[0])
-<<<<<<< HEAD
         df.loc[index, 'Date'] = date[0]
-        index -= 1
->>>>>>> parent of f3635ad... Merge branch 'development' of https://github.com/monicafar147/team11package into development
-=======
-        new_df.loc[index, 'Date'] = date[0]
         index += 1
 
     new_df['Date'] = sorted(dates)
     new_df['Date'] = pd.to_datetime(new_df['Date'], format='%Y-%m-%d')
     new_df = new_df.set_index('Date')
     new_df['Tweets'] = df['Date'].value_counts().sort_index()
->>>>>>> parent of c9b4e82... Update team11Module.py
 
-    pass
+    return new_df
 
 def word_splitter(df):
-    """Splits the sentences in a dataframe's column into a list of the separate words. 
+    """Splits the sentences in a dataframe's column into a list of the separate words.
     The created lists will be placed in a column named 'Split Tweets' in the original dataframe.
-    
+
     Args:
         df (pandas dataframe) should contain a column, named 'Tweets'.
 
     Returns:
-        returns: pandas dataframe where the sentences are split in the 'Tweets' into a list of seperate words, and placed into a new column named 'Split Tweets'. 
+        returns: pandas dataframe where the sentences are split in the 'Tweets' into a list of seperate words, and placed into a new column named 'Split Tweets'.
         The resulting words are all be lowercase.
 
     Expected output should be same dataframe but with new column headings Date and Split Tweets
     """
-    # Create 'Split Tweets' column with each tweet split into a list: Olwethu 
-         
+    # Create 'Split Tweets' column, with each tweet split into a list: Olwethu
+
     pass
 
 def stop_words_remover(df):
     """Removes english stop words from a tweet.
-    Tokenise the sentences according to the definition in word_splitter. 
+    Tokenise the sentences according to the definition in word_splitter.
     Note that word_spliiter cannot be called within this function.
-    The stopwords are defined in the stopwords_dict variable defined as: 
+    The stopwords are defined in the stopwords_dict variable defined as:
+   
+    Args:
+        df (pandas dataframe) should contain a column.
+
+    Returns:
+        returns: pandas dataframe with a column named "Without Stop Words".
+
+    Expected output should be same dataframe but with new column heading Without Stop Words
+    """
+    #create stop words dictionary
+    # dictionary of english stopwords
     stop_words_dict = {
     'stopwords':[
         'where', 'done', 'if', 'before', 'll', 'very', 'keep', 'something', 'nothing', 'thereupon', 
@@ -189,14 +245,19 @@ def stop_words_remover(df):
         'because', 'rather', 'using', 'without', 'throughout', 'on', 'she', 'never', 'eight', 'no', 'hereupon', 
         'them', 'whereafter', 'quite', 'which', 'move', 'thru', 'until', 'afterwards', 'fifty', 'i', 'itself', 'nâ€˜t',
         'him', 'could', 'front', 'within', 'â€˜re', 'back', 'such', 'already', 'several', 'side', 'whence', 'me', 
-        'same', 'were', 'it', 'every', 'third', 'together']
-    
-    Args:
-        df (pandas dataframe) should contain a column.
+        'same', 'were', 'it', 'every', 'third', 'together'
+    ]
+    }
 
-    Returns:
-        returns: pandas dataframe with a column named "Without Stop Words".
+    # Create 'Without Stop Words' column: Mikael
+    df['Without Stop Words'] = df['Tweets'].str.lower().str.split()
 
-    Expected output should be same dataframe but with new column heading Without Stop Words
-    """    
-    pass
+    # Extract stop words from 'Without Stop Words' column: Monica
+    for row in df['Without Stop Words']:
+        for word in row:
+        #find stop word in stop word dictionary
+            for stop_word in stop_words_dict['stopwords']:
+                if word == stop_word:
+                    #remove stop word from current row
+                    row.remove(word)
+    return df
