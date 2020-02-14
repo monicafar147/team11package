@@ -114,16 +114,26 @@ def number_of_tweets_per_day(df):
     # Create new dataframe: Monica
 
     # Create and complete 'Date' and 'Tweets' column in new dataframe: Mikael
-    df['Date'] = df['Date'].str.split(' ')
+    new_df['Date'] = df['Date'].str.split(' ')
 
     dates = []
     index = 0
-    for date in df['Date']:
+    for date in new_df['Date']:
         if date[0] not in dates:
             dates.append(date[0])
+<<<<<<< HEAD
         df.loc[index, 'Date'] = date[0]
         index -= 1
 >>>>>>> parent of f3635ad... Merge branch 'development' of https://github.com/monicafar147/team11package into development
+=======
+        new_df.loc[index, 'Date'] = date[0]
+        index += 1
+
+    new_df['Date'] = sorted(dates)
+    new_df['Date'] = pd.to_datetime(new_df['Date'], format='%Y-%m-%d')
+    new_df = new_df.set_index('Date')
+    new_df['Tweets'] = df['Date'].value_counts().sort_index()
+>>>>>>> parent of c9b4e82... Update team11Module.py
 
     pass
 
