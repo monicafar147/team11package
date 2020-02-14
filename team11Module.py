@@ -78,8 +78,7 @@ def date_parser(dates):
         date_list.append(i[0])
         
     return date_list
-
-
+    
     # extract the date only from dates: Olwethu
     # append each date to a new list: Olwethu
     # return new list with dates only: Mikael
