@@ -72,14 +72,6 @@ def date_parser(dates):
     date_parser(list) == ['2019-11-29', '2019-11-29', '2019-11-29']
 
     """
-    date_list = []
-    for i in dates:
-        i = i.split(' ')
-        date_list.append(i[0])
-        
-    return date_list
-
-
     # extract the date only from dates: Olwethu
     # append each date to a new list: Olwethu
     # return new list with dates only: Mikael
@@ -117,26 +109,8 @@ def number_of_tweets_per_day(df):
 
     Expected output should be same dataframe but with new column headings Date and Tweets
     """
-<<<<<<< HEAD
 
     pass
-=======
-    # Create new dataframe: Monica
-    new_df = pd.DataFrame() 
-
-    # Create and complete 'Date' and 'Tweets' column in new dataframe: Mikael
-    new_df['Date'] = df['Date'].str.split(' ')
-
-    dates = []
-    index = 0
-    for date in new_df['Date']:
-        if date[0] not in dates:
-            dates.append(date[0])
-        new_df.loc[index, 'Date'] = date[0]
-        index += 1
-
-    return new_df
->>>>>>> parent of c9b4e82... Update team11Module.py
 
 def word_splitter(df):
     """Splits the sentences in a dataframe's column into a list of the separate words. 
