@@ -162,19 +162,20 @@ def number_of_tweets_per_day(df):
     Expected output should be same dataframe but with new column headings Date and Tweets
     """
     # Create new dataframe: Monica
+    new_df = pd.DataFrame() 
 
     # Create and complete 'Date' and 'Tweets' column in new dataframe: Mikael
-    df['Date'] = df['Date'].str.split(' ')
+    new_df['Date'] = df['Date'].str.split(' ')
 
     dates = []
     index = 0
-    for date in df['Date']:
+    for date in new_df['Date']:
         if date[0] not in dates:
             dates.append(date[0])
-        df.loc[index, 'Date'] = date[0]
+        new_df.loc[index, 'Date'] = date[0]
         index += 1
 
-    pass
+    return new_df
 
 def word_splitter(df):
     """Splits the sentences in a dataframe's column into a list of the separate words.
