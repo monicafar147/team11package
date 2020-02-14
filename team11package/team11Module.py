@@ -64,18 +64,11 @@ def five_num_summary(items):
 
     """
     # Calculate five number summary: Courtney
-    max = np.max(items)
-    max = np.median(items)
-    min = np.min(items)
+    maximum = np.max(items)
+    median = np.median(items)
+    minimum = np.min(items)
     q1 = np.percentile(items, 25)
-    q2 = np.percentile(items, 75)
-
-
-    maximum = 0
-    median = 0
-    minimum = 0
-    q1 = 0
-    q3 = 0
+    q3 = np.percentile(items, 75)
 
     # Create and return dictionary: Mikael
     dict = {}
