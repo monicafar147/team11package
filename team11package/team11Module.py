@@ -175,6 +175,11 @@ def number_of_tweets_per_day(df):
         new_df.loc[index, 'Date'] = date[0]
         index += 1
 
+    new_df['Date'] = sorted(dates)
+    new_df['Date'] = pd.to_datetime(new_df['Date'], format='%Y-%m-%d')
+    new_df = new_df.set_index('Date')
+    new_df['Tweets'] = df['Date'].value_counts().sort_index()
+
     return new_df
 
 def word_splitter(df):
