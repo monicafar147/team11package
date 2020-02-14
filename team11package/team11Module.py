@@ -109,6 +109,21 @@ def number_of_tweets_per_day(df):
 
     Expected output should be same dataframe but with new column headings Date and Tweets
     """
+<<<<<<< HEAD
+=======
+    # Create new dataframe: Monica
+
+    # Create and complete 'Date' and 'Tweets' column in new dataframe: Mikael
+    df['Date'] = df['Date'].str.split(' ')
+
+    dates = []
+    index = 0
+    for date in df['Date']:
+        if date[0] not in dates:
+            dates.append(date[0])
+        df.loc[index, 'Date'] = date[0]
+        index -= 1
+>>>>>>> parent of f3635ad... Merge branch 'development' of https://github.com/monicafar147/team11package into development
 
     pass
 
