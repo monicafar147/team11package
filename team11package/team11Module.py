@@ -20,22 +20,16 @@ def dictionary_of_metrics(items):
                                    'min': 8842.00,
                                    'max': 39660.00}
     """
-    ourmean = 0
-    ourmedian = 0
-    variance = 0
-    standard_dev = 0
-    minimum = 0
-    maximum = 0
-
     # Create and return dictionary: Mikael
     dict = {}
 
-    dict['mean'] = ourmean
-    dict['median'] = ourmedian
-    dict['variance'] = variance
-    dict['standard variance'] = standard_dev
-    dict['min'] = minimum
-    dict['max'] = maximum
+    # Use numpy to find the metrics: Courtney
+    dict['mean'] = round(np.mean(items), 2)
+    dict['median'] = round(np.median(items),2)
+    dict['variance'] = round(np.var(items), 2)
+    dict['standard variance'] = round(np.std(items),2)
+    dict['min'] = round(np.min(items),2)
+    dict['max'] = round(np.max(items),2)
 
     return dict
 
