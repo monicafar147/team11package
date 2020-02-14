@@ -117,8 +117,31 @@ def number_of_tweets_per_day(df):
 
     Expected output should be same dataframe but with new column headings Date and Tweets
     """
+<<<<<<< HEAD
 
     pass
+=======
+    # Create new dataframe: Monica
+    new_df = pd.DataFrame() 
+
+    # Create and complete 'Date' and 'Tweets' column in new dataframe: Mikael
+    new_df['Date'] = df['Date'].str.split(' ')
+
+    dates = []
+    index = 0
+    for date in new_df['Date']:
+        if date[0] not in dates:
+            dates.append(date[0])
+        new_df.loc[index, 'Date'] = date[0]
+        index += 1
+
+    new_df['Date'] = sorted(dates)
+    new_df['Date'] = pd.to_datetime(new_df['Date'], format='%Y-%m-%d')
+    new_df = new_df.set_index('Date')
+    new_df['Tweets'] = df['Date'].value_counts().sort_index()
+
+    return new_df
+>>>>>>> parent of c9b4e82... Update team11Module.py
 
 def word_splitter(df):
     """Splits the sentences in a dataframe's column into a list of the separate words. 
