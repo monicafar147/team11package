@@ -132,8 +132,10 @@ def extract_municipality_hashtags(df):
             if key in tweet:
                 df.loc[l, 'municipality'] = mun_dict[key]
             #else: Fill empty values in 'hashtags' and 'municipality' columns with np.nan: Courtney
-
+            else:
+                df.loc[l, 'municipality'] = np.NaN
         l += 1
+        
 
     # Create 'hashtags' column: Mikael
     df['hashtags'] = df['Tweets'].str.lower().str.split()
@@ -148,7 +150,9 @@ def extract_municipality_hashtags(df):
           hashtags.append(word)
       df.loc[i, 'hashtags'] = hashtags
       # Fill empty values in 'hashtags' and 'municipality' columns with np.nan: Courtney
-      i += 1
+      if len(hashtags) == 0:
+          df.loc[i, 'hashtags'] = np.NaN
+    i += 1
 
     return df
 
