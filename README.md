@@ -5,7 +5,7 @@ This package is for use of team 11 and team 11 only.
 'python setup.py sdist'
 
 ## installing this package from GITHUB
-'pip install git+<'url from git'>
+'pip install git https://github.com/monicafar147/team11package.git
 
 ## updatig this package from GITHUB
-'pip install --upgrade git+<'url from git'>
+'pip install --upgrade git https://github.com/monicafar147/team11package.git
